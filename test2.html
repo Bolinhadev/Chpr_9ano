@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feira de Ciências CHPR</title>
+    <!-- Importação de fontes do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <!-- Importação da biblioteca AOS para animações de rolagem -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        /* Configurações globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Estilos da Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            background-color: #fff;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar h1 {
+            font-family: 'Pacifico', cursive;
+            margin-left: 50px;
+            font-size: 28px;
+            color: #d32f2f;
+        }
+
+        .navbar .nav-links {
+            margin-right: 50px;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 20px;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #d32f2f;
+        }
+
+        /* Seções estilizadas */
+        section {
+            padding: 120px 50px;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-bottom: 2px solid #eee;
+        }
+
+        section h2 {
+            font-size: 36px;
+            color: #d32f2f;
+            font-weight: 700;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+            letter-spacing: 2px;
+        }
+
+        section p {
+            font-size: 18px;
+            color: #666;
+            max-width: 900px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #d32f2f;
+            color: #fff;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-weight: 700;
+        }
+
+        .btn:hover {
+            background-color: #c62828;
+            transform: scale(1.05);
+        }
+
+        /* Animações AOS */
+        [data-aos] {
+            opacity: 0;
+            transition-property: opacity, transform;
+        }
+
+        [data-aos][data-aos][data-aos-duration="400"] {
+            transition-duration: 400ms;
+        }
+
+        [data-aos][data-aos][data-aos-duration="600"] {
+            transition-duration: 600ms;
+        }
+
+        [data-aos][data-aos][data-aos-duration="800"] {
+            transition-duration: 800ms;
+        }
+
+        [data-aos][data-aos][data-aos-duration="1000"] {
+            transition-duration: 1000ms;
+        }
+
+        [data-aos].aos-animate {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Barra de Progresso no Scroll */
+        #progressbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 5px;
+            background-color: #d32f2f;
+            z-index: 1000;
+            transition: width 0.25s ease;
+        }
+
+        /* Rodapé estilizado */
+        footer {
+            background-color: #d32f2f;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #c62828;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 20px;
+            }
+
+            .navbar h1 {
+                margin-left: 20px;
+                font-size: 24px;
+            }
+
+            .navbar .nav-links {
+                margin-right: 20px;
+            }
+
+            section h2 {
+                font-size: 30px;
+            }
+
+            section p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de Progresso no Scroll -->
+    <div id="progressbar"></div>
+
+    <!-- Navbar fixa -->
+    <nav class="navbar">
+        <h1>Feira de Ciências</h1>
+        <div class="nav-links">
+            <a href="br.html">Português</a>
+            <a href="en.html">English</a>
+            <a href="de.html">Deutsch</a>
+            <a href="fr.html">Français</a>
+        </div>
+    </nav>
+
+    <!-- Seção de Apresentação -->
+    <section data-aos="fade-up" data-aos-duration="1000">
+        <h2>Projeto 1: Energia Sustentável</h2>
+        <p>O projeto 1 explora as mais recentes inovações em fontes de energia renováveis, com o objetivo de criar um futuro sustentável. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <img src="https://via.placeholder.com/900x500" alt="Energia Sustentável">
+    </section>
+
+    <!-- Seção de Robótica Avançada -->
+    <section data-aos="fade-up" data-aos-duration="1200">
+        <h2>Projeto 2: Robótica Avançada</h2>
+        <p>Utilizando robôs de última geração, o Projeto 2 visa criar soluções automatizadas que revolucionam a indústria e a vida cotidiana. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <img src="https://via.placeholder.com/900x500" alt="Robótica Avançada">
+    </section>
+
+    <!-- Seção de Mais Inovações -->
+    <section data-aos="fade-up" data-aos-duration="1400">
+        <h2>Projeto 3: Inteligência Artificial</h2>
+        <p>A inteligência artificial é o próximo passo para um mundo mais interconectado e eficiente. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <img src="https://via.placeholder.com/900x500" alt="Inteligência Artificial">
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2024 Feira de Ciências CHPR. Todos os direitos reservados. <a href="#">Política de Privacidade</a></p>
+    </footer>
+
+    <!-- Scripts AOS e JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Inicializa a biblioteca AOS
+        AOS.init();
+
+        // Barra de progresso no scroll
+        window.onscroll = function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("progressbar").style.width = scrolled + "%";
+        };
+    </script>
+
+</body>
+</html>
