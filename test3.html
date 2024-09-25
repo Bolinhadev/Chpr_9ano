@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feira de Ciências CHPR</title>
+    <!-- Importação de fontes do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <!-- Importação da biblioteca AOS para animações de rolagem -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        /* Configurações globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Estilos da Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar h1 {
+            font-family: 'Pacifico', cursive;
+            margin-left: 50px;
+            font-size: 28px;
+            color: #d32f2f;
+        }
+
+        .navbar .nav-links {
+            margin-right: 50px;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 20px;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #d32f2f;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            color: #d32f2f;
+            margin-bottom: 20px;
+            font-family: 'Pacifico', cursive;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero img {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            height: 70%;
+            z-index: 1;
+        }
+
+        /* Seções estilizadas */
+        section {
+            padding: 100px 50px;
+            text-align: center;
+            background-color: #fff;
+            border-bottom: 2px solid #eee;
+        }
+
+        section h2 {
+            font-size: 36px;
+            color: #d32f2f;
+            font-weight: 700;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+            letter-spacing: 2px;
+        }
+
+        section p {
+            font-size: 18px;
+            color: #666;
+            max-width: 900px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Modal de Projeto */
+        .project {
+            display: inline-block;
+            cursor: pointer;
+            margin: 20px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            font-size: 28px;
+            color: #d32f2f;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: #c62828;
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #d32f2f;
+            color: #fff;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-weight: 700;
+        }
+
+        .btn:hover {
+            background-color: #c62828;
+            transform: scale(1.05);
+        }
+
+        /* Seção de professores */
+        .professores {
+            padding: 100px 50px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .professores h2 {
+            font-size: 32px;
+            color: #d32f2f;
+            margin-bottom: 20px;
+        }
+
+        .professores ul {
+            list-style-type: none;
+        }
+
+        .professores ul li {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero img {
+                height: 50%;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            section {
+                padding: 80px 20px;
+            }
+
+            .modal-content {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar fixa -->
+    <nav class="navbar">
+        <h1>Feira de Ciências</h1>
+        <div class="nav-links">
+            <a href="br.html">Português</a>
+            <a href="en.html">English</a>
+            <a href="de.html">Deutsch</a>
+            <a href="fr.html">Français</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>CHPR - Foz do Iguaçu</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum aliquet tellus ac lacus bibendum, sed pellentesque ligula eleifend.</p>
+        </div>
+        <img src="https://i.ibb.co/4FsnwVG/child.png" alt="Criança">
+    </div>
+
+    <!-- Seção de Projetos -->
+    <section>
+        <h2>Projeto 1: Energia Sustentável</h2>
+        <p>Clique para saber mais sobre nosso projeto de energia sustentável.</p>
+        <div class="project" onclick="openModal('modal1')">
+            <img src="https://via.placeholder.com/900x500" alt="Energia Sustentável">
+        </div>
+    </section>
+
+    <!-- Seção de Professores Responsáveis -->
+    <section class="professores">
+        <h2>Professores Responsáveis</h2>
+        <ul>
+            <li>Prof. João da Silva</li>
+            <li>Prof. Maria de Souza</li>
+            <li>Prof. Ricardo Mendes</li>
+        </ul>
+    </section>
+    <!-- Modal para Projeto 1 -->
+    <div class="modal" id="modal1">
+        <div class="modal-content">
+            <h2>Projeto 1: Energia Sustentável</h2>
+            <p>
+                Nosso projeto foca em fontes renováveis de energia para um futuro mais sustentável. Estudamos formas de aproveitar energias limpas e renováveis, como solar, eólica e hídrica, e implementamos soluções para minimizar o impacto ambiental.
+            </p>
+            <img src="https://via.placeholder.com/800x400" alt="Energia Sustentável">
+            <button class="close-btn" onclick="closeModal('modal1')">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Seção de Projetos Adicionais -->
+    <section>
+        <h2>Projeto 2: Robótica Avançada</h2>
+        <p>Clique para saber mais sobre nosso projeto de robótica avançada.</p>
+        <div class="project" onclick="openModal('modal2')">
+            <img src="https://via.placeholder.com/900x500" alt="Robótica Avançada">
+        </div>
+    </section>
+
+    <!-- Modal para Projeto 2 -->
+    <div class="modal" id="modal2">
+        <div class="modal-content">
+            <h2>Projeto 2: Robótica Avançada</h2>
+            <p>
+                Nosso projeto de robótica avançada visa criar soluções automatizadas que ajudam a melhorar a produtividade em diversas indústrias. Estudamos diferentes tipos de robôs, desde manipuladores industriais até robôs móveis.
+            </p>
+            <img src="https://via.placeholder.com/800x400" alt="Robótica Avançada">
+            <button class="close-btn" onclick="closeModal('modal2')">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Seção de Mais Inovações -->
+    <section>
+        <h2>Projeto 3: Inteligência Artificial</h2>
+        <p>Clique para saber mais sobre nosso projeto de Inteligência Artificial.</p>
+        <div class="project" onclick="openModal('modal3')">
+            <img src="https://via.placeholder.com/900x500" alt="Inteligência Artificial">
+        </div>
+    </section>
+
+    <!-- Modal para Projeto 3 -->
+    <div class="modal" id="modal3">
+        <div class="modal-content">
+            <h2>Projeto 3: Inteligência Artificial</h2>
+            <p>
+                No projeto de Inteligência Artificial, investigamos como os sistemas de IA podem ser usados para resolver problemas complexos, desde diagnósticos médicos até automação inteligente. Exploramos tecnologias de aprendizado de máquina, redes neurais e muito mais.
+            </p>
+            <img src="https://via.placeholder.com/800x400" alt="Inteligência Artificial">
+            <button class="close-btn" onclick="closeModal('modal3')">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer style="background-color: #d32f2f; color: white; text-align: center; padding: 20px;">
+        <p>&copy; 2024 Feira de Ciências CHPR. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Script para abrir e fechar modais -->
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+    </script>
+
+    <!-- Importando a biblioteca de animações AOS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Inicializa a biblioteca AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+
+</body>
+</html>
