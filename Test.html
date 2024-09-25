@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feira de Ciências CHPR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Configurações globais */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e3ffe7 0%, #d9e7ff 100%);
+            overflow-x: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            animation: fadeIn 2s ease;
+            font-weight: 700;
+            color: #333;
+        }
+
+        /* Imagens ajustáveis */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Navbar com tradução */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #4CAF50;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar h2 {
+            margin: 0;
+            color: white;
+            font-weight: 400;
+        }
+
+        .navbar .lang-select {
+            display: flex;
+        }
+
+        .navbar button {
+            margin: 0 10px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: white;
+            color: #4CAF50;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar button:hover {
+            background-color: #3e8e41;
+            color: white;
+        }
+
+        /* Seções do projeto */
+        .project {
+            width: 90%;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: slideIn 2s ease;
+            transform-style: preserve-3d;
+        }
+
+        /* Animações de fadeIn e slideIn */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Animação de loading */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .loading div {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Barra de progresso de scroll */
+        #progressbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: #4CAF50;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animação de Loading -->
+    <div class="loading">
+        <div></div>
+    </div>
+
+    <!-- Navbar com sistema de tradução -->
+    <div class="navbar">
+        <h2>Feira de Ciências CHPR</h2>
+        <div class="lang-select">
+            <button onclick="translate('pt')">🇧🇷 Português</button>
+            <button onclick="translate('en')">🇬🇧 English</button>
+            <button onclick="translate('de')">🇩🇪 Deutsch</button>
+            <button onclick="translate('fr')">🇫🇷 Français</button>
+        </div>
+    </div>
+
+    <!-- Barra de progresso de scroll -->
+    <div id="progressbar"></div>
+
+    <!-- Conteúdo da página -->
+    <h1 id="page-title" data-pt="Feira de Ciências CHPR" data-en="Science Fair CHPR" data-de="Wissenschaftsmesse CHPR" data-fr="Foire Scientifique CHPR">Feira de Ciências CHPR</h1>
+
+    <div class="project">
+        <h2 data-pt="Projeto 1: Energia Sustentável" data-en="Project 1: Sustainable Energy" data-de="Projekt 1: Nachhaltige Energie" data-fr="Projet 1 : Énergie Durable">Projeto 1: Energia Sustentável</h2>
+        <p data-pt="Lorem ipsum dolor sit amet..." data-en="Lorem ipsum dolor sit amet..." data-de="Lorem ipsum dolor sit amet..." data-fr="Lorem ipsum dolor sit amet...">Lorem ipsum dolor sit amet...</p>
+        <img src="https://via.placeholder.com/800x400" alt="Imagem do projeto">
+    </div>
+
+    <div class="project">
+        <h2 data-pt="Projeto 2: Robótica Avançada" data-en="Project 2: Advanced Robotics" data-de="Projekt 2: Fortschrittliche Robotik" data-fr="Projet 2 : Robotique Avancée">Projeto 2: Robótica Avançada</h2>
+        <p data-pt="Lorem ipsum dolor sit amet..." data-en="Lorem ipsum dolor sit amet..." data-de="Lorem ipsum dolor sit amet..." data-fr="Lorem ipsum dolor sit amet...">Lorem ipsum dolor sit amet...</p>
+        <img src="https://via.placeholder.com/800x400" alt="Imagem do projeto">
+    </div>
+
+    <!-- Mais projetos podem ser adicionados aqui -->
+
+    <script>
+        // Função para atualizar a barra de progresso do scroll
+        window.onscroll = function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("progressbar").style.width = scrolled + "%";
+        };
+
+        // Função de tradução com mudança de bandeiras
+        function translate(lang) {
+            const elements = document.querySelectorAll('[data-' + lang + ']');
+            elements.forEach(el => {
+                const translation = el.getAttribute('data-' + lang);
+                el.innerText = translation;
+            });
+        }
+
+        // Tela de loading desaparece após 2 segundos
+        window.onload = function() {
+            setTimeout(function() {
+                document.querySelector('.loading').style.display = 'none';
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>
